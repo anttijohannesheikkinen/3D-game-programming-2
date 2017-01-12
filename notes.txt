@@ -9,3 +9,25 @@ ADVICE:
 Code small shit all the time.
 
 Every time you create a scene, drag it into build immediately.
+
+Remember that floating point precision gets lost when big enough.
+
+Lighting and skubox has to be done very early in a project
+
+Differences between height and normal maps.
+
+Occlusion maps...
+
+Don't use Secondary Maps on mobile.
+
+Gareth wants to use public rather than serializing fields
+
+No need to store transforms nowadays.
+
+
+
+spawn
+
+start/end
+speed
+floor manager
