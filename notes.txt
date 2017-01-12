@@ -1,0 +1,11 @@
+2017-01-12
+
+Keep reading Unity release/patch notes!
+
+Know what to avoid and so on...
+
+
+ADVICE:
+Code small shit all the time.
+
+Every time you create a scene, drag it into build immediately.
