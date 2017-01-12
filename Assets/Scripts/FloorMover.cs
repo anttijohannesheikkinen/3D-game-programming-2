@@ -32,7 +32,7 @@ public class FloorMover : MonoBehaviour {
 
         if (ownTransform.position.z <= endPosition.z)
         {
-            floorManager.FloorDestroyed();
+            floorManager.FloorDestroyed(ownTransform.position.z - endPosition.z);
             Destroy(gameObject);
         }
 

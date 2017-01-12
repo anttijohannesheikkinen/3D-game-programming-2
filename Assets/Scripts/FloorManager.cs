@@ -7,6 +7,8 @@ public class FloorManager : MonoBehaviour {
 
     public Vector3 startPosition;
     public Vector3 endPosition;
+    public float minimumSpeed;
+    public float maximumSpeed;
     public float speed;
     //public float travelTime;
     //public float spawnFrequency = 1.0f;
@@ -26,8 +28,9 @@ public class FloorManager : MonoBehaviour {
         float floorLength = Mathf.Abs(startPosition.z) + Mathf.Abs(endPosition.z);
 
 
-        while (zPos > -floorLength) {
-            Spawn(new Vector3(0, 0, zPos), 6);
+
+        while (zPos > endPosition.z) {
+            Spawn(new Vector3(0, 0, zPos), 0);
             zPos -= 5.0f;
         }
 
@@ -35,29 +38,23 @@ public class FloorManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //if ((Time.time - timerStart >= spawnFrequency))
-        //{
-        //    Spawn(startPosition, endPosition);
-        //}
 
 	}
 
-    public void FloorDestroyed ()
+    public void FloorDestroyed (float offsetZ)
     {
         floorTiles--;
-        Spawn(startPosition, Random.Range(0, prefabs.Length - 1));
-        //Instantiate(prefabs[Random.Range(0, prefabs.Length - 1 )]);
+
+        Spawn(new Vector3(startPosition.x, startPosition.y, startPosition.z + offsetZ), Random.Range(0, prefabs.Length - 1));
+
     }
 
     private void Spawn (Vector3 startPos, int prefabIndex)
     {
-        timerStart = Time.time;
         floorTiles++;
 
         GameObject floorTile = Instantiate(prefabs[prefabIndex]);
         FloorMover floorMover = floorTile.GetComponent<FloorMover>();
-        //floorMover.floorManager = this;
-        //floorMover.duration = travelTime;
         floorMover.speed = speed;
         floorMover.startPosition = startPos;
         floorMover.endPosition = endPosition;

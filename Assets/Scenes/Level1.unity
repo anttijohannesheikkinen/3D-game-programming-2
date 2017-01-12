@@ -223,7 +223,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401187865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 3.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -241,7 +241,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
-  movementSpeed: 0
+  movementSpeed: 4.76
+  jumpHeight: 1.51
+  jumpUpSpeed: 238.3
+  jumpDownSpeed: 270.6
 --- !u!1 &1698556481
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +371,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6408548, guid: 47907612d0e9da54c876bf3ac59c893a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 47907612d0e9da54c876bf3ac59c893a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1917856719
@@ -399,16 +403,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 193254, guid: 7906179b76e19b649b944368136d9178, type: 2}
-  - {fileID: 171544, guid: e266fe0c8e8afa84e9607fe1031fd41b, type: 2}
-  - {fileID: 156592, guid: 5ab3b402c54cd7045a7a65c5133df4c7, type: 2}
-  - {fileID: 121808, guid: ca52ba69094b66d448d426a203f6f953, type: 2}
-  - {fileID: 190372, guid: 428e3ee7948581e42aa451a6b7f3ae48, type: 2}
-  - {fileID: 115438, guid: 24a4b82aa55fd7b40a29c2befd402543, type: 2}
-  - {fileID: 189400, guid: 5eaa1a49dd808f14a9f439345923de6e, type: 2}
+  - {fileID: 169610, guid: a653c771e4e1f8a43a3cca9d36399d05, type: 2}
+  - {fileID: 104396, guid: a4ad2debe46678a4ea2a5e39f1e45cfb, type: 2}
+  - {fileID: 183392, guid: 350321943e8cf004085cc619cdba1814, type: 2}
+  - {fileID: 174340, guid: bb3938308c553a4459dad8f3d3912ca6, type: 2}
+  - {fileID: 112452, guid: b65b05a255308dd45ab3bb3bfa4b0a99, type: 2}
+  - {fileID: 112150, guid: 4a167746a2bd043478bede1e6b321e91, type: 2}
+  - {fileID: 193886, guid: d708cfef06dc309439c9e62d8fefc0ac, type: 2}
   startPosition: {x: 0, y: 0, z: 25}
   endPosition: {x: 0, y: 0, z: -15}
-  speed: 7.74
+  minimumSpeed: 3
+  maximumSpeed: 12
+  speed: 3.41
   floorTiles: 0
 --- !u!4 &1917856721
 Transform:
