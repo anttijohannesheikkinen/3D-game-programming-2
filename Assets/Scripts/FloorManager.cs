@@ -21,17 +21,15 @@ public class FloorManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        float floorLength;
+        float zPos = startPosition.z;
 
-        int amountOfInitialFloorTiles;
-        GameObject[] initialFloortiles = new GameObject[amountOfInitialFloorTiles];
+        float floorLength = Mathf.Abs(startPosition.z) + Mathf.Abs(endPosition.z);
 
-        foreach ()
-        {
 
+        while (zPos > -floorLength) {
+            Spawn(new Vector3(0, 0, zPos));
+            zPos -= 5.0f;
         }
-
-        Spawn(Vector3.zero, new Vector3(0, 0, -10));
 
     }
 	
@@ -47,11 +45,11 @@ public class FloorManager : MonoBehaviour {
     public void FloorDestroyed ()
     {
         floorTiles--;
-        Spawn(startPosition, endPosition);
+        Spawn(startPosition);
         //Instantiate(prefabs[Random.Range(0, prefabs.Length - 1 )]);
     }
 
-    private void Spawn (Vector3 startPos, Vector3 endPos)
+    private void Spawn (Vector3 startPos)
     {
         timerStart = Time.time;
         floorTiles++;
@@ -62,6 +60,6 @@ public class FloorManager : MonoBehaviour {
         //floorMover.duration = travelTime;
         floorMover.speed = speed;
         floorMover.startPosition = startPos;
-        floorMover.endPosition = endPos;
+        floorMover.endPosition = endPosition;
     }
 }
