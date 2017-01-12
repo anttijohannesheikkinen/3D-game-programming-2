@@ -9,6 +9,8 @@ public class FloorMover : MonoBehaviour {
     public Vector3 endPosition;
     public float duration;
 
+    public FloorManager floorManager;
+
 
     private float totalTime;
     private float startTime;
@@ -33,6 +35,7 @@ public class FloorMover : MonoBehaviour {
         float ratio = (Time.time - startTime ) / duration;
 
         if (ratio >= 1.0f) {
+            floorManager.FloorDestroyed();
             Destroy(gameObject);
         }
 
