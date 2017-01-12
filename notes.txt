@@ -24,6 +24,8 @@ Gareth wants to use public rather than serializing fields
 
 No need to store transforms nowadays.
 
+Write code only for the specific problem at hand.
+
 
 
 spawn
