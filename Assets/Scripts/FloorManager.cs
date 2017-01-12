@@ -27,7 +27,7 @@ public class FloorManager : MonoBehaviour {
 
 
         while (zPos > -floorLength) {
-            Spawn(new Vector3(0, 0, zPos));
+            Spawn(new Vector3(0, 0, zPos), 6);
             zPos -= 5.0f;
         }
 
@@ -45,16 +45,16 @@ public class FloorManager : MonoBehaviour {
     public void FloorDestroyed ()
     {
         floorTiles--;
-        Spawn(startPosition);
+        Spawn(startPosition, Random.Range(0, prefabs.Length - 1));
         //Instantiate(prefabs[Random.Range(0, prefabs.Length - 1 )]);
     }
 
-    private void Spawn (Vector3 startPos)
+    private void Spawn (Vector3 startPos, int prefabIndex)
     {
         timerStart = Time.time;
         floorTiles++;
 
-        GameObject floorTile = Instantiate(prefabs[Random.Range(0, prefabs.Length - 1)]);
+        GameObject floorTile = Instantiate(prefabs[prefabIndex]);
         FloorMover floorMover = floorTile.GetComponent<FloorMover>();
         //floorMover.floorManager = this;
         //floorMover.duration = travelTime;
