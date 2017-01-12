@@ -21,12 +21,14 @@ public class FloorMover : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         ownTransform = gameObject.GetComponent<Transform>();
+        floorManager = GameObject.Find("FloorManager").GetComponent<FloorManager>();
 
 	}
 
     void Start ()
     {
         startTime = Time.time;
+        ownTransform.position = startPosition;
     }
 	
 	// Update is called once per frame
