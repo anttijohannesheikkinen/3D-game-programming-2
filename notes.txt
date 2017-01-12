@@ -28,6 +28,11 @@ Write code only for the specific problem at hand.
 
 
 
+HOMEWORK:
+Do the character movement so it feels good, respawn when it falls off and so on.
+
+
+
 spawn
 
 start/end
