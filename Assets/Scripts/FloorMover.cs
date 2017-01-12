@@ -9,15 +9,9 @@ public class FloorMover : MonoBehaviour {
     public Vector3 endPosition;
 
 
-    //Lerp-based movement
-    public float duration;
-    private float totalTime;
-    private float startTime;
-    private float ratio;
 
     private Transform ownTransform;
 
-    // Velocity bsaed movement
     private Vector3 direction;
     public float speed;
 
@@ -29,7 +23,6 @@ public class FloorMover : MonoBehaviour {
 
     void Start ()
     {
-        //startTime = Time.time;
         direction = (endPosition - startPosition).normalized;
         ownTransform.position = startPosition;
     }
@@ -37,17 +30,7 @@ public class FloorMover : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //float ratio = (Time.time - startTime ) / duration;
-
-        //if (ratio >= 1.0f)
-        //{
-        //    floorManager.FloorDestroyed();
-        //    Destroy(gameObject);
-        //}
-
-        //ownTransform.position = Vector3.Lerp(startPosition, endPosition, ratio);
-
-        if (ownTransform.position.z < endPosition.z)
+        if (ownTransform.position.z <= endPosition.z)
         {
             floorManager.FloorDestroyed();
             Destroy(gameObject);

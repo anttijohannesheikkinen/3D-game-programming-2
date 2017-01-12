@@ -9,8 +9,8 @@ public class FloorManager : MonoBehaviour {
     public Vector3 endPosition;
     public float speed;
     //public float travelTime;
-    public float spawnFrequency = 1.0f;
-    public int maxFloorTiles;
+    //public float spawnFrequency = 1.0f;
+    //public int maxFloorTiles;
     public int floorTiles;
 
 
