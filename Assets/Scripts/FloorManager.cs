@@ -10,24 +10,15 @@ public class FloorManager : MonoBehaviour {
     public float minimumSpeed;
     public float maximumSpeed;
     public float speed;
-    //public float travelTime;
-    //public float spawnFrequency = 1.0f;
-    //public int maxFloorTiles;
     public int floorTiles;
 
-
-    private float timerStart;
-
-
+    private bool initialSpawn;
 
     // Use this for initialization
     void Start () {
 
         float zPos = startPosition.z;
-
         float floorLength = Mathf.Abs(startPosition.z) + Mathf.Abs(endPosition.z);
-
-
 
         while (zPos > endPosition.z) {
             Spawn(new Vector3(0, 0, zPos), 0);
@@ -58,5 +49,6 @@ public class FloorManager : MonoBehaviour {
         floorMover.speed = speed;
         floorMover.startPosition = startPos;
         floorMover.endPosition = endPosition;
+
     }
 }

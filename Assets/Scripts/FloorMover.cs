@@ -8,8 +8,6 @@ public class FloorMover : MonoBehaviour {
     public Vector3 startPosition;
     public Vector3 endPosition;
 
-
-
     private Transform ownTransform;
 
     private Vector3 direction;
