@@ -10,12 +10,20 @@ public class FloorManager : MonoBehaviour {
     public float minimumSpeed;
     public float maximumSpeed;
     public float speed;
+    public float speedIncrement;
+    public float delayBetweenSpeedUp;
+
     public int floorTiles;
 
     private bool initialSpawn;
+    private float speedUpPhaseStartTime;
 
     // Use this for initialization
     void Start () {
+
+
+        speedUpPhaseStartTime = Time.time;
+        speed = minimumSpeed;
 
         float zPos = startPosition.z;
         float floorLength = Mathf.Abs(startPosition.z) + Mathf.Abs(endPosition.z);
@@ -25,10 +33,27 @@ public class FloorManager : MonoBehaviour {
             zPos -= 5.0f;
         }
 
+
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (((Time.time - speedUpPhaseStartTime) > delayBetweenSpeedUp) && (speed < maximumSpeed))
+        {
+
+            speed += speedIncrement;
+
+
+            GameObject[] floorParts = GameObject.FindGameObjectsWithTag("FloorParts");
+
+            foreach (GameObject go in floorParts)
+            {
+                go.GetComponent<FloorMover>().speed = speed;
+            }
+
+            speedUpPhaseStartTime = Time.time;
+        }
 
 	}
 
