@@ -47,7 +47,7 @@ public class FloorManager : MonoBehaviour {
 
             foreach (GameObject go in floorParts)
             {
-                go.GetComponent<FloorMover>().speed = speed;
+                go.GetComponent<FloorPart>().speed = speed;
             }
 
             speedUpPhaseStartTime = Time.time;
@@ -68,7 +68,7 @@ public class FloorManager : MonoBehaviour {
         floorTiles++;
 
         GameObject floorTile = Instantiate(prefabs[prefabIndex], startPos, Quaternion.identity);
-        FloorMover floorMover = floorTile.GetComponent<FloorMover>();
+        FloorPart floorMover = floorTile.GetComponent<FloorPart>();
         floorMover.speed = speed;
         floorMover.startPosition = startPos;
         floorMover.endPosition = endPosition;

@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427176, b: 0.56452405, a: 1}
+  m_IndirectSpecularColor: {r: 0.44633043, g: 0.49613154, b: 0.57466626, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -393,13 +393,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 860654752}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 13.19, z: 0}
+  m_LocalRotation: {x: 0.28126538, y: -0.6696949, z: 0.32293934, w: 0.6067197}
+  m_LocalPosition: {x: 7.22, y: 13.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 50.7, y: -95, z: 1.37}
 --- !u!1001 &918207801
 Prefab:
   m_ObjectHideFlags: 0
@@ -527,6 +527,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1590215211897168, guid: 13738825d270e494387e8a6cb8b2a3bb, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 13738825d270e494387e8a6cb8b2a3bb, type: 2}
   m_IsPrefabParent: 0
@@ -542,6 +546,7 @@ GameObject:
   - component: {fileID: 1378065602}
   - component: {fileID: 1378065601}
   - component: {fileID: 1378065605}
+  - component: {fileID: 1378065606}
   m_Layer: 0
   m_Name: BadGuy
   m_TagString: Untagged
@@ -587,7 +592,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1378065600}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -606,7 +611,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1378065600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 6.76}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 797275545}
@@ -631,6 +636,21 @@ MonoBehaviour:
   lerpTime: 1.4
   startposition: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &1378065606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1378065600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d16540105f07a9647925e09331ea66f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorManager: {fileID: 0}
+  startPosition: {x: 0, y: 2, z: 9.8}
+  endPosition: {x: 0, y: 2, z: -15}
+  speed: 16.36
 --- !u!1 &1698556481
 GameObject:
   m_ObjectHideFlags: 0

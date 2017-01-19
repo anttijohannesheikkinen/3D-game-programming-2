@@ -38,3 +38,13 @@ spawn
 start/end
 speed
 floor manager
+
+
+Baddie/base class for movers
+
+OnTriggerEnter
+-player death
+-floormanager randomly spawn baddies
+-despawn
+-randomise movement
+-speed up

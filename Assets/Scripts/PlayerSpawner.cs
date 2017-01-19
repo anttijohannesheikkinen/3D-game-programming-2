@@ -11,6 +11,11 @@ public class PlayerSpawner : MonoBehaviour {
         startPosition = gameObject.transform.position;
 	}
 
+    public void Die ()
+    {
+        SpawnAgain();
+    }
+
     void SpawnAgain ()
     {
         gameObject.transform.position = startPosition;
@@ -23,5 +28,5 @@ public class PlayerSpawner : MonoBehaviour {
 
             SpawnAgain();
         }
-    }
+    }  
 }

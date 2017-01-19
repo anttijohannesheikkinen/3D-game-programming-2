@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BadGuyMovement : MonoBehaviour {
+public class BounceFromSideToSide : MonoBehaviour {
 
     public float lerpTime;
 
