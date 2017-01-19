@@ -41,9 +41,7 @@ public class FloorManager : MonoBehaviour {
 
         if (((Time.time - speedUpPhaseStartTime) > delayBetweenSpeedUp) && (speed < maximumSpeed))
         {
-
-            speed += speedIncrement;
-
+            speed = Mathf.Clamp(speed += speedIncrement, speed, maximumSpeed);
 
             GameObject[] floorParts = GameObject.FindGameObjectsWithTag("FloorParts");
 

@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 1378065603}
   - component: {fileID: 1378065602}
   - component: {fileID: 1378065601}
+  - component: {fileID: 1378065605}
   m_Layer: 0
   m_Name: BadGuy
   m_TagString: Untagged
@@ -605,7 +606,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1378065600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 6.76}
+  m_LocalPosition: {x: 0, y: 1.5, z: 6.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 797275545}
@@ -616,6 +617,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1378065605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1378065600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f06179e1dc48de4b907673ce5368edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpTime: 1.4
+  startposition: {x: 0, y: 0, z: 0}
+  endPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1698556481
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,12 +33,12 @@ public class BadGuyMovement : MonoBehaviour {
         if (fromStartToEnd)
 
         {
-            gameObject.transform.position = Vector3.Lerp(startposition, endPosition, lerpRatio);
+            gameObject.transform.position = Vector3.Lerp(startposition, endPosition, Easing.EaseInOut(lerpRatio, EasingType.Cubic, EasingType.Cubic));
         }
 
         else
         {
-            gameObject.transform.position = Vector3.Lerp(endPosition, startposition, lerpRatio);
+            gameObject.transform.position = Vector3.Lerp(endPosition, startposition, Easing.EaseInOut(lerpRatio, EasingType.Cubic, EasingType.Cubic));
         }
 
         if (lerpRatio >= 1.0f)
