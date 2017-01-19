@@ -167,7 +167,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4471756315783150, guid: 830ad3d527c33a349a7b50269004f67e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -5.05
+      value: -5.03
       objectReference: {fileID: 0}
     - target: {fileID: 4471756315783150, guid: 830ad3d527c33a349a7b50269004f67e, type: 2}
       propertyPath: m_LocalPosition.z
@@ -352,7 +352,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.26
+  m_Radius: 0.18
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -391,9 +391,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
   movementSpeed: 4.76
-  jumpHeight: 3.7
-  jumpUpSpeed: 20.66
-  fallSpeed: 37.9
+  jumpHeight: 3.8
+  jumpUpSpeed: 20
+  fallSpeed: 37.35
   jumpTravelled: 0
 --- !u!114 &1401187871
 MonoBehaviour:
@@ -551,7 +551,7 @@ MonoBehaviour:
   endPosition: {x: 0, y: 0, z: -15}
   minimumSpeed: 3
   maximumSpeed: 12
-  speed: 3.41
+  speed: 4.82
   floorTiles: 0
 --- !u!4 &1917856721
 Transform:
