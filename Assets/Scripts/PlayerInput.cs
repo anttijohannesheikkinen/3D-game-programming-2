@@ -5,16 +5,15 @@ public class PlayerInput : MonoBehaviour {
 
     public CharacterController characterController;
     public float movementSpeed;
-    public float jumpHeight = 2;
     public float jumpUpSpeed = 2;
-    public float fallSpeed = -1;
-    public float jumpTravelled;
+    public float gravity = -1;
 
     private float angleInDegrees;
     private float angleInRadians;
     private float moveY = 1;
 
-    private bool jumpingUp = false;
+    private Vector3 movement = Vector3.zero;
+
 
     void Awake ()
     {
@@ -31,34 +30,14 @@ public class PlayerInput : MonoBehaviour {
 
         float inputX = Input.GetAxisRaw("Horizontal");
 
-        if (!jumpingUp && characterController.isGrounded && Input.GetButton("Jump"))
+        if (characterController.isGrounded && Input.GetButton("Jump"))
         {
-
-            jumpingUp = true;
-            jumpTravelled = 0;
+            moveY = jumpUpSpeed;
         }
 
+        moveY -= gravity * Time.deltaTime;
 
-        if (jumpingUp)
-        {
-            if (jumpTravelled <= jumpHeight)
-            {
-                moveY = Time.deltaTime * jumpUpSpeed;
-                jumpTravelled += moveY;
-            }
-
-            else
-            {
-                jumpingUp = false;
-            }
-        }
-
-        else
-        {
-            moveY = Time.deltaTime * (0 - fallSpeed);
-        }
-
-        Vector3 movement = new Vector3(inputX * Time.deltaTime * movementSpeed, moveY , 0);
+        movement = new Vector3(inputX * movementSpeed, moveY , 0) * Time.deltaTime;
         characterController.Move(movement);
 
     }
