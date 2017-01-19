@@ -4,6 +4,7 @@ using System.Collections;
 public class FloorManager : MonoBehaviour {
 
     public GameObject[] prefabs;
+    public GameObject enemyPrefab;
 
     public Vector3 startPosition;
     public Vector3 endPosition;
@@ -12,6 +13,9 @@ public class FloorManager : MonoBehaviour {
     public float speed;
     public float speedIncrement;
     public float delayBetweenSpeedUp;
+
+    public float nextEnemySpawnTime;
+    private float enemySpawnTimerStart;
 
     public int floorTiles;
 
@@ -25,11 +29,14 @@ public class FloorManager : MonoBehaviour {
         speedUpPhaseStartTime = Time.time;
         speed = minimumSpeed;
 
+        enemySpawnTimerStart = Time.time;
+        nextEnemySpawnTime = Random.Range(1.0f, 3.0f);
+
         float zPos = startPosition.z;
         float floorLength = Mathf.Abs(startPosition.z) + Mathf.Abs(endPosition.z);
 
         while (zPos > endPosition.z) {
-            Spawn(new Vector3(0, 0, zPos), 0);
+            SpawnFloor(new Vector3(0, 0, zPos), 0);
             zPos -= 5.0f;
         }
 
@@ -38,6 +45,13 @@ public class FloorManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if ((Time.time - enemySpawnTimerStart) > nextEnemySpawnTime)
+        {
+            enemySpawnTimerStart = Time.time;
+            nextEnemySpawnTime = Random.Range(1.0f, 3.0f);
+            SpawnEnemy();
+        }
 
         if (((Time.time - speedUpPhaseStartTime) > delayBetweenSpeedUp) && (speed < maximumSpeed))
         {
@@ -50,6 +64,14 @@ public class FloorManager : MonoBehaviour {
                 go.GetComponent<FloorPart>().speed = speed;
             }
 
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject go in enemies)
+            {
+                go.GetComponent<EnemyMover>().speed = speed;
+            }
+
+
             speedUpPhaseStartTime = Time.time;
         }
 
@@ -59,11 +81,11 @@ public class FloorManager : MonoBehaviour {
     {
         floorTiles--;
 
-        Spawn(new Vector3(startPosition.x, startPosition.y, startPosition.z + offsetZ), Random.Range(0, prefabs.Length - 1));
+        SpawnFloor(new Vector3(startPosition.x, startPosition.y, startPosition.z + offsetZ), Random.Range(0, prefabs.Length - 1));
 
     }
 
-    private void Spawn (Vector3 startPos, int prefabIndex)
+    private void SpawnFloor (Vector3 startPos, int prefabIndex)
     {
         floorTiles++;
 
@@ -72,5 +94,14 @@ public class FloorManager : MonoBehaviour {
         floorMover.speed = speed;
         floorMover.startPosition = startPos;
         floorMover.endPosition = endPosition;
+    }
+
+    private void SpawnEnemy ()
+    {
+        GameObject enemy = Instantiate(enemyPrefab, startPosition, Quaternion.identity);
+        EnemyMover enemyMover = enemy.GetComponent<EnemyMover>();
+        enemyMover.speed = speed;
+        enemyMover.startPosition = startPosition + ;
+        enemyMover.endPosition = endPosition;
     }
 }

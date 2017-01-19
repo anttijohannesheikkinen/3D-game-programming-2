@@ -35,7 +35,10 @@ public class BounceFromSideToSide : MonoBehaviour {
 
         lerpRatio = (Time.time - lerpStartTime) / lerpTime;
 
-        gameObject.transform.position = Vector3.Lerp(position1, position2, Easing.EaseInOut(lerpRatio, EasingType.Sine, EasingType.Sine));
+
+        Vector3 lerpPosition = Vector3.Lerp(position1, position2, Easing.EaseInOut(lerpRatio, EasingType.Sine, EasingType.Sine));
+
+        gameObject.transform.position = new Vector3(lerpPosition.x, transform.position.y, transform.position.z);
 
 
 

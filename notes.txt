@@ -48,3 +48,6 @@ OnTriggerEnter
 -despawn
 -randomise movement
 -speed up
+
+homework: make a coin that can be picked up... prefab is enough
+and get this shit working
