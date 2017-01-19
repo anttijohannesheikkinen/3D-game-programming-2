@@ -390,11 +390,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
-  movementSpeed: 4.76
-  jumpHeight: 3.8
-  jumpUpSpeed: 20
-  fallSpeed: 37.35
-  jumpTravelled: 0
+  movementSpeed: 3.2
+  jumpUpSpeed: 20.42
+  gravity: 63.4
 --- !u!114 &1401187871
 MonoBehaviour:
   m_ObjectHideFlags: 0
