@@ -13,11 +13,17 @@ public class BadGuyMovement : MonoBehaviour {
     private float lerpRatio;
     private bool fromStartToEnd;
 
+    private Vector3 position1;
+    private Vector3 position2;
+
 	// Use this for initialization
 	void Start () {
 
         startposition = new Vector3(gameObject.transform.position.x + 5, gameObject.transform.position.y, gameObject.transform.position.z);
         endPosition = new Vector3(gameObject.transform.position.x - 5, gameObject.transform.position.y, gameObject.transform.position.z);
+
+        position1 = startposition;
+        position2 = endPosition;
 
         lerpStartTime = Time.time;
 
@@ -29,22 +35,26 @@ public class BadGuyMovement : MonoBehaviour {
 
         lerpRatio = (Time.time - lerpStartTime) / lerpTime;
 
+        gameObject.transform.position = Vector3.Lerp(position1, position2, Easing.EaseInOut(lerpRatio, EasingType.Cubic, EasingType.Cubic));
 
-        if (fromStartToEnd)
 
-        {
-            gameObject.transform.position = Vector3.Lerp(startposition, endPosition, Easing.EaseInOut(lerpRatio, EasingType.Cubic, EasingType.Cubic));
-        }
-
-        else
-        {
-            gameObject.transform.position = Vector3.Lerp(endPosition, startposition, Easing.EaseInOut(lerpRatio, EasingType.Cubic, EasingType.Cubic));
-        }
 
         if (lerpRatio >= 1.0f)
         {
             fromStartToEnd = !fromStartToEnd;
             lerpStartTime = Time.time;
+
+            if (fromStartToEnd)
+            {
+                position1 = startposition;
+                position2 = endPosition;
+            }
+
+            else
+            {
+                position1 = endPosition;
+                position2 = startposition;
+            }
         }
     }
 }
