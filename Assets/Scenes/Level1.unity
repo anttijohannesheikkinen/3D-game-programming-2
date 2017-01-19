@@ -224,7 +224,8 @@ Prefab:
       propertyPath: direction
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 64756030726658708, guid: 830ad3d527c33a349a7b50269004f67e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 830ad3d527c33a349a7b50269004f67e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1077523289
@@ -286,6 +287,7 @@ Prefab:
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 114645312212518758, guid: 830ad3d527c33a349a7b50269004f67e, type: 2}
+    - {fileID: 64756030726658708, guid: 830ad3d527c33a349a7b50269004f67e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 830ad3d527c33a349a7b50269004f67e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1401187865
@@ -300,6 +302,7 @@ GameObject:
   - component: {fileID: 1401187866}
   - component: {fileID: 1401187867}
   - component: {fileID: 1401187870}
+  - component: {fileID: 1401187871}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -369,7 +372,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401187865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.7, z: 0}
+  m_LocalPosition: {x: 0, y: 7.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -388,9 +391,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
   movementSpeed: 4.76
-  jumpHeight: 1.51
-  jumpUpSpeed: 238.3
-  jumpDownSpeed: 270.6
+  jumpHeight: 3.7
+  jumpUpSpeed: 20.66
+  fallSpeed: 37.9
+  jumpTravelled: 0
+--- !u!114 &1401187871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1401187865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dfa55b40ccbb814a8c47bacd65df856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1698556481
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,11 +575,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2108336599}
   - component: {fileID: 2108336598}
-  - component: {fileID: 2108336597}
   - component: {fileID: 2108336596}
   m_Layer: 0
   m_Name: BottomPlane
-  m_TagString: Untagged
+  m_TagString: BottomPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -600,20 +614,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &2108336597
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2108336595}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &2108336598
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -628,7 +628,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2108336595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.88, z: 193}
+  m_LocalPosition: {x: 0, y: -10.98, z: 193}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}

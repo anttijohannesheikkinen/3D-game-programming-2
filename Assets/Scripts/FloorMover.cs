@@ -21,6 +21,7 @@ public class FloorMover : MonoBehaviour {
 
     void Start ()
     {
+
         direction = (endPosition - startPosition).normalized;
         ownTransform.position = startPosition;
     }

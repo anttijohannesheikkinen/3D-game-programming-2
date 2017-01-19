@@ -44,11 +44,10 @@ public class FloorManager : MonoBehaviour {
     {
         floorTiles++;
 
-        GameObject floorTile = Instantiate(prefabs[prefabIndex]);
+        GameObject floorTile = Instantiate(prefabs[prefabIndex], startPos, Quaternion.identity);
         FloorMover floorMover = floorTile.GetComponent<FloorMover>();
         floorMover.speed = speed;
         floorMover.startPosition = startPos;
         floorMover.endPosition = endPosition;
-
     }
 }

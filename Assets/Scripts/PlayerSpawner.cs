@@ -16,10 +16,11 @@ public class PlayerSpawner : MonoBehaviour {
         gameObject.transform.position = startPosition;
     }
 	
-	void OnControllerColliderHit (ControllerColliderHit hit)
-    {
-        if (hit.gameObject.CompareTag("BottomPlane"))
+	void Update () {
+
+        if (gameObject.transform.position.z < -5.0f || gameObject.transform.position.y < -10.0f)
         {
+
             SpawnAgain();
         }
     }
