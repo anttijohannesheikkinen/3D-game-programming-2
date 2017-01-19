@@ -35,7 +35,7 @@ public class BadGuyMovement : MonoBehaviour {
 
         lerpRatio = (Time.time - lerpStartTime) / lerpTime;
 
-        gameObject.transform.position = Vector3.Lerp(position1, position2, Easing.EaseInOut(lerpRatio, EasingType.Cubic, EasingType.Cubic));
+        gameObject.transform.position = Vector3.Lerp(position1, position2, Easing.EaseInOut(lerpRatio, EasingType.Sine, EasingType.Sine));
 
 
 
