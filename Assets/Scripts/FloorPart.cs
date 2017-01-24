@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class FloorPart : ScrollingFloor {
 
-    void Awake ()
+    private new void Awake ()
     {
-        OnAwake();
+        base.Awake();
     }
 
 	// Use this for initialization
-	void Start () {
-        OnStart();
+	private new void Start () {
+        base.Start();
+
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	private new void Update () {
 
-        if (ownTransform.position.z <= endPosition.z)
+        base.Update();
+
+        if (transform.position.z <= endPosition.z)
         {
-            floorManager.FloorDestroyed(ownTransform.position.z - endPosition.z);
+            floorManager.FloorDestroyed(transform.position.z - endPosition.z);
             Destroy(gameObject);
         }
-
-        ownTransform.Translate(direction * speed * Time.deltaTime);
     }
 }

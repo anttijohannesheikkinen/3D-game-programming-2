@@ -8,41 +8,34 @@ public class ScrollingFloor : MonoBehaviour {
     public Vector3 startPosition;
     public Vector3 endPosition;
 
-    protected Transform ownTransform;
-
-    protected Vector3 direction;
     public float speed;
 
-    // Use this for initialization
-    private void Awake () {
-        OnAwake();
-	}
+    protected Vector3 direction;
 
-    protected void OnAwake ()
-    {
-        ownTransform = gameObject.GetComponent<Transform>();
+    // Use this for initialization
+    protected void Awake () {
         floorManager = GameObject.Find("FloorManager").GetComponent<FloorManager>();
     }
 
-    private void Start ()
-    {
-        OnStart();
-    }
-
-    protected void OnStart()
+    protected void Start ()
     {
         direction = (endPosition - startPosition).normalized;
-        ownTransform.position = startPosition;
+        transform.position = startPosition;
     }
 
     // Update is called once per frame
-    private void Update ()
+    protected void Update ()
     {
+        transform.position += direction * speed * Time.deltaTime;
 
+        if (transform.position.z <= endPosition.z)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    protected void OnUpdate()
+    protected void DestroyThis ()
     {
-
+        Destroy(gameObject);
     }
 }

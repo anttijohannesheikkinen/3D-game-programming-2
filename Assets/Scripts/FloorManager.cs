@@ -22,6 +22,8 @@ public class FloorManager : MonoBehaviour {
     private bool initialSpawn;
     private float speedUpPhaseStartTime;
 
+    private GameObject lastSpawned;
+
     // Use this for initialization
     void Start () {
 
@@ -32,12 +34,12 @@ public class FloorManager : MonoBehaviour {
         enemySpawnTimerStart = Time.time;
         nextEnemySpawnTime = Random.Range(1.0f, 3.0f);
 
-        float zPos = startPosition.z;
+        float zPos = endPosition.z;
         float floorLength = Mathf.Abs(startPosition.z) + Mathf.Abs(endPosition.z);
 
-        while (zPos > endPosition.z) {
+        while (zPos < startPosition.z) {
             SpawnFloor(new Vector3(0, 0, zPos), 0);
-            zPos -= 5.0f;
+            zPos += 5.0f;
         }
 
 
@@ -94,14 +96,33 @@ public class FloorManager : MonoBehaviour {
         floorMover.speed = speed;
         floorMover.startPosition = startPos;
         floorMover.endPosition = endPosition;
+
+        lastSpawned = floorTile;
     }
+
+    //public Vector3 GetLastSpawnedFloorTileOffset ()
+    //{
+    //    return lastSpawned.transform.position;
+    //}
 
     private void SpawnEnemy ()
     {
         GameObject enemy = Instantiate(enemyPrefab, startPosition, Quaternion.identity);
         EnemyMover enemyMover = enemy.GetComponent<EnemyMover>();
         enemyMover.speed = speed;
-        enemyMover.startPosition = startPosition + ;
-        enemyMover.endPosition = endPosition;
+        enemyMover.startPosition = startPosition + new Vector3(0, 2, 0);
+        enemyMover.endPosition = endPosition + new Vector3(0, 2, 0);
+
+        int random = Random.Range(0, 2);
+
+        if (random == 0)
+        {
+            enemyMover.fromLeftToRight = true;
+        }
+
+        else
+        {
+            enemyMover.fromLeftToRight = false;
+        }
     }
 }

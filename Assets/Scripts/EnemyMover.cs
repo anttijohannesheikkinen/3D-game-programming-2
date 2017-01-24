@@ -4,19 +4,56 @@ using UnityEngine;
 
 public class EnemyMover : ScrollingFloor {
 
-    void Awake ()
+    public bool fromLeftToRight;
+
+    private BounceFromSideToSide bounce;
+
+    private new void Awake ()
     {
-        OnAwake();
+        base.Awake();
+
+        bounce = gameObject.GetComponent<BounceFromSideToSide>();
     }
 	// Use this for initialization
-	void Start () {
-        OnStart();
+	private new void Start () {
+        base.Start();
+
+        if (fromLeftToRight)
+        {
+            transform.position = new Vector3(gameObject.transform.position.x + 5, gameObject.transform.position.y, gameObject.transform.position.z);
+            bounce.FlipDirection(true);
+        }
+
+        else
+        {
+            transform.position = new Vector3(gameObject.transform.position.x - 5, gameObject.transform.position.y, gameObject.transform.position.z);
+            bounce.FlipDirection(false);
+        }
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	private new void Update () {
+        base.Update();
 
-        ownTransform.Translate(direction * speed * Time.deltaTime);
+        if (transform.position.z <= endPosition.z)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter (Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Die();
+        }
+    }
+
+    public void Die ()
+    {
+        //TODO
+
+        Destroy(gameObject);
     }
 
 }

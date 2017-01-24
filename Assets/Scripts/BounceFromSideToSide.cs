@@ -5,13 +5,13 @@ using UnityEngine;
 public class BounceFromSideToSide : MonoBehaviour {
 
     public float lerpTime;
+    public bool fromLeftToRight = true;
 
     public Vector3 startposition;
     public Vector3 endPosition;
 
     private float lerpStartTime;
     private float lerpRatio;
-    private bool fromStartToEnd;
 
     private Vector3 position1;
     private Vector3 position2;
@@ -21,13 +21,6 @@ public class BounceFromSideToSide : MonoBehaviour {
 
         startposition = new Vector3(gameObject.transform.position.x + 5, gameObject.transform.position.y, gameObject.transform.position.z);
         endPosition = new Vector3(gameObject.transform.position.x - 5, gameObject.transform.position.y, gameObject.transform.position.z);
-
-        position1 = startposition;
-        position2 = endPosition;
-
-        lerpStartTime = Time.time;
-
-        fromStartToEnd = true;
     }
 	
 	// Update is called once per frame
@@ -40,24 +33,28 @@ public class BounceFromSideToSide : MonoBehaviour {
 
         gameObject.transform.position = new Vector3(lerpPosition.x, transform.position.y, transform.position.z);
 
-
-
         if (lerpRatio >= 1.0f)
         {
-            fromStartToEnd = !fromStartToEnd;
-            lerpStartTime = Time.time;
+            FlipDirection(!fromLeftToRight);
+        }
+    }
 
-            if (fromStartToEnd)
-            {
-                position1 = startposition;
-                position2 = endPosition;
-            }
+    public void FlipDirection(bool leftToRight)
+    {
+        lerpStartTime = Time.time;
 
-            else
-            {
-                position1 = endPosition;
-                position2 = startposition;
-            }
+        if (leftToRight)
+        {
+            fromLeftToRight = true;
+            position1 = startposition;
+            position2 = endPosition;
+        }
+
+        else
+        {
+            fromLeftToRight = false;
+            position1 = endPosition;
+            position2 = startposition;
         }
     }
 }
