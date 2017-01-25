@@ -20,13 +20,13 @@ public class EnemyMover : ScrollingFloor {
 
         if (fromLeftToRight)
         {
-            transform.position = new Vector3(gameObject.transform.position.x + 5, gameObject.transform.position.y, gameObject.transform.position.z);
+            transform.position = new Vector3(gameObject.transform.position.x + 3, gameObject.transform.position.y, gameObject.transform.position.z);
             bounce.FlipDirection(true);
         }
 
         else
         {
-            transform.position = new Vector3(gameObject.transform.position.x - 5, gameObject.transform.position.y, gameObject.transform.position.z);
+            transform.position = new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y, gameObject.transform.position.z);
             bounce.FlipDirection(false);
         }
 	}
@@ -46,6 +46,7 @@ public class EnemyMover : ScrollingFloor {
         if (other.CompareTag("Player"))
         {
             Die();
+            other.GetComponent<PlayerSpawner>().Die();
         }
     }
 

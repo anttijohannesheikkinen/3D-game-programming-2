@@ -25,7 +25,6 @@ public class PlayerSpawner : MonoBehaviour {
     public void Die ()
     {
         if (!dead) {
-            Debug.Log("told to die");
             dead = true;
             transform.position = hidePosition;
             Invoke("SpawnAgain", 1.6f);

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FloorPart : ScrollingFloor {
 
+    Vector3 offset = new Vector3(0, 0, 5);
+
     private new void Awake ()
     {
         base.Awake();
@@ -13,8 +15,7 @@ public class FloorPart : ScrollingFloor {
 	private new void Start () {
         base.Start();
 
-
-	}
+    }
 	
 	// Update is called once per frame
 	private new void Update () {

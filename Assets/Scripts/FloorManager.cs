@@ -84,8 +84,8 @@ public class FloorManager : MonoBehaviour {
         floorTiles--;
 
         SpawnFloor(new Vector3(startPosition.x, startPosition.y, startPosition.z + offsetZ), Random.Range(0, prefabs.Length - 1));
-
     }
+
 
     private void SpawnFloor (Vector3 startPos, int prefabIndex)
     {
@@ -98,6 +98,7 @@ public class FloorManager : MonoBehaviour {
         floorMover.endPosition = endPosition;
 
         lastSpawned = floorTile;
+
     }
 
     //public Vector3 GetLastSpawnedFloorTileOffset ()

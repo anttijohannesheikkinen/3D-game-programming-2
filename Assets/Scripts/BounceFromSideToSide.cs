@@ -19,8 +19,8 @@ public class BounceFromSideToSide : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        startposition = new Vector3(gameObject.transform.position.x + 5, gameObject.transform.position.y, gameObject.transform.position.z);
-        endPosition = new Vector3(gameObject.transform.position.x - 5, gameObject.transform.position.y, gameObject.transform.position.z);
+        startposition = new Vector3(gameObject.transform.position.x + 3, gameObject.transform.position.y, gameObject.transform.position.z);
+        endPosition = new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y, gameObject.transform.position.z);
     }
 	
 	// Update is called once per frame
