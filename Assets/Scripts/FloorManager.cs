@@ -5,6 +5,7 @@ public class FloorManager : MonoBehaviour {
 
     public GameObject[] prefabs;
     public GameObject enemyPrefab;
+    public GameObject coinPrefab;
 
     public Vector3 startPosition;
     public Vector3 endPosition;
@@ -16,6 +17,9 @@ public class FloorManager : MonoBehaviour {
 
     public float nextEnemySpawnTime;
     private float enemySpawnTimerStart;
+
+    public float nextCoinSpawnTime;
+    private float coinSpawnTimerStart;
 
     public int floorTiles;
 
@@ -33,6 +37,9 @@ public class FloorManager : MonoBehaviour {
 
         enemySpawnTimerStart = Time.time;
         nextEnemySpawnTime = Random.Range(1.0f, 3.0f);
+
+        coinSpawnTimerStart = Time.time;
+        nextCoinSpawnTime = Random.Range(0.5f, 5.0f);
 
         float zPos = endPosition.z;
         float floorLength = Mathf.Abs(startPosition.z) + Mathf.Abs(endPosition.z);
@@ -55,6 +62,13 @@ public class FloorManager : MonoBehaviour {
             SpawnEnemy();
         }
 
+        if ((Time.time - coinSpawnTimerStart) > nextCoinSpawnTime)
+        {
+            coinSpawnTimerStart = Time.time;
+            nextCoinSpawnTime = Random.Range(0.5f, 5.0f);
+            SpawnCoin();
+        }
+
         if (((Time.time - speedUpPhaseStartTime) > delayBetweenSpeedUp) && (speed < maximumSpeed))
         {
             speed = Mathf.Clamp(speed += speedIncrement, speed, maximumSpeed);
@@ -73,6 +87,12 @@ public class FloorManager : MonoBehaviour {
                 go.GetComponent<EnemyMover>().speed = speed;
             }
 
+            GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
+
+            foreach (GameObject go in coins)
+            {
+                go.GetComponent<ScrollingFloor>().speed = speed;
+            }
 
             speedUpPhaseStartTime = Time.time;
         }
@@ -125,5 +145,16 @@ public class FloorManager : MonoBehaviour {
         {
             enemyMover.fromLeftToRight = false;
         }
+    }
+
+    private void SpawnCoin ()
+    {
+        GameObject coin = Instantiate(coinPrefab, startPosition, Quaternion.identity);
+        ScrollingFloor coinMover = coin.GetComponent<ScrollingFloor>();
+        coinMover.speed = speed;
+
+        float random = Random.Range(-3.0f, 3.0f);
+        coinMover.startPosition = startPosition + new Vector3(random, 2, 0);
+        coinMover.endPosition = endPosition + new Vector3(random, 2, 0);
     }
 }

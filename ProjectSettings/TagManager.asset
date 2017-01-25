@@ -9,6 +9,7 @@ TagManager:
   - BottomPlane
   - FloorParts
   - Enemy
+  - Coin
   layers:
   - Default
   - TransparentFX
