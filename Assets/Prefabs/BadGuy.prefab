@@ -452,6 +452,8 @@ MonoBehaviour:
   startPosition: {x: 0, y: 2, z: 9.8}
   endPosition: {x: 0, y: 2, z: -15}
   speed: 1.83
+  particlesPrefab: {fileID: 198779826663914226, guid: 4f1f861c0dac2ac46a9c14e69c5223ef,
+    type: 2}
   fromLeftToRight: 0
 --- !u!135 &135260405770592896
 SphereCollider:

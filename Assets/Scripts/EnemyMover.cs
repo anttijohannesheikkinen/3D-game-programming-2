@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyMover : ScrollingFloor {
 
+    public ParticleSystem particlesPrefab;
+
     public bool fromLeftToRight;
 
     private BounceFromSideToSide bounce;
@@ -52,7 +54,7 @@ public class EnemyMover : ScrollingFloor {
 
     public void Die ()
     {
-        //TODO
+        ParticleSystem particles = Instantiate(particlesPrefab, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }
