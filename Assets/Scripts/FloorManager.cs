@@ -62,13 +62,6 @@ public class FloorManager : MonoBehaviour {
             SpawnEnemy();
         }
 
-        if ((Time.time - coinSpawnTimerStart) > nextCoinSpawnTime)
-        {
-            coinSpawnTimerStart = Time.time;
-            nextCoinSpawnTime = Random.Range(0.5f, 5.0f);
-            SpawnCoin();
-        }
-
         if (((Time.time - speedUpPhaseStartTime) > delayBetweenSpeedUp) && (speed < maximumSpeed))
         {
             speed = Mathf.Clamp(speed += speedIncrement, speed, maximumSpeed);
@@ -104,11 +97,19 @@ public class FloorManager : MonoBehaviour {
         floorTiles--;
 
         SpawnFloor(new Vector3(startPosition.x, startPosition.y, startPosition.z + offsetZ), Random.Range(0, prefabs.Length - 1));
+
+        if ((Time.time - coinSpawnTimerStart) > nextCoinSpawnTime)
+        {
+
+            nextCoinSpawnTime = Random.Range(0.5f, 5.0f);
+            DrawRaysForCoinSpawnPositions();
+        }
     }
 
 
     private void SpawnFloor (Vector3 startPos, int prefabIndex)
     {
+
         floorTiles++;
 
         GameObject floorTile = Instantiate(prefabs[prefabIndex], startPos, Quaternion.identity);
@@ -119,12 +120,9 @@ public class FloorManager : MonoBehaviour {
 
         lastSpawned = floorTile;
 
-    }
+        DrawRaysForCoinSpawnPositions();
 
-    //public Vector3 GetLastSpawnedFloorTileOffset ()
-    //{
-    //    return lastSpawned.transform.position;
-    //}
+    }
 
     private void SpawnEnemy ()
     {
@@ -147,14 +145,59 @@ public class FloorManager : MonoBehaviour {
         }
     }
 
-    private void SpawnCoin ()
+    private void DrawRaysForCoinSpawnPositions()
     {
-        GameObject coin = Instantiate(coinPrefab, startPosition, Quaternion.identity);
+
+
+
+        float xPosition = startPosition.x + 2.0f;
+
+        Vector3[] validPositions = new Vector3[5];
+        int validPositionCount = 0;
+
+        while (xPosition >= -2.0f)
+        {
+
+            Vector3 drawRayStart = new Vector3(xPosition, startPosition.y + 2, startPosition.z);
+
+            Debug.Log(drawRayStart);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(drawRayStart, Vector3.down, out hit, 8.0f))
+            {
+                validPositions[validPositionCount] = drawRayStart;
+                validPositionCount++;
+                Debug.DrawLine(drawRayStart, drawRayStart + Vector3.down * 3, Color.blue, 1.0f);
+            }
+
+            else
+            {
+                Debug.DrawLine(drawRayStart, drawRayStart + Vector3.down * 3, Color.red, 1.0f);
+            }
+
+            xPosition -= 1.0f;
+
+        }
+
+        if (validPositionCount > 0)
+        {
+            SpawnCoin(validPositions[Random.Range(0, validPositionCount - 1)]);
+        }
+
+    }
+
+    private void SpawnCoin (Vector3 startPos)
+    {
+        coinSpawnTimerStart = Time.time;
+
+        GameObject coin = Instantiate(coinPrefab, startPos, Quaternion.identity);
         ScrollingFloor coinMover = coin.GetComponent<ScrollingFloor>();
         coinMover.speed = speed;
 
-        float random = Random.Range(-3.0f, 3.0f);
-        coinMover.startPosition = startPosition + new Vector3(random, 2, 0);
-        coinMover.endPosition = endPosition + new Vector3(random, 2, 0);
+        coinMover.startPosition = startPos;
+        coinMover.endPosition = startPos + new Vector3(0, 0, - 40);
+
+
     }
 }
