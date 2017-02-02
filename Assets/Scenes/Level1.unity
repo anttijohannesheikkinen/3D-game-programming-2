@@ -661,10 +661,10 @@ MonoBehaviour:
   minimumSpeed: 3
   maximumSpeed: 12
   speed: 3
-  speedIncrement: 0.5
-  delayBetweenSpeedUp: 10.42
+  speedIncrement: 0.53
+  delayBetweenSpeedUp: 4.65
   nextEnemySpawnTime: 1.93
-  nextCoinSpawnTime: 1.9
+  nextCoinSpawnTime: 2.59
   floorTiles: 0
 --- !u!4 &1917856721
 Transform:

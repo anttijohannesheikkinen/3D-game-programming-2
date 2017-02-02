@@ -101,7 +101,7 @@ public class FloorManager : MonoBehaviour {
         if ((Time.time - coinSpawnTimerStart) > nextCoinSpawnTime)
         {
 
-            nextCoinSpawnTime = Random.Range(0.5f, 5.0f);
+            nextCoinSpawnTime = Random.Range(1.5f, 5.0f);
             DrawRaysForCoinSpawnPositions();
         }
     }

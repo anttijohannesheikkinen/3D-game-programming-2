@@ -51,3 +51,6 @@ OnTriggerEnter
 
 homework: make a coin that can be picked up... prefab is enough
 and get this shit working
+
+InControl
+-better controls for Unity
