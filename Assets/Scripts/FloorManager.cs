@@ -92,18 +92,19 @@ public class FloorManager : MonoBehaviour {
 
 	}
 
+    private void FixedUpdate ()
+    {
+        if ((Time.time - coinSpawnTimerStart) > nextCoinSpawnTime)
+        {
+            AttemptToSpawnCoins();
+        }
+    }
+
     public void FloorDestroyed (float offsetZ)
     {
         floorTiles--;
 
         SpawnFloor(new Vector3(startPosition.x, startPosition.y, startPosition.z + offsetZ), Random.Range(0, prefabs.Length - 1));
-
-        if ((Time.time - coinSpawnTimerStart) > nextCoinSpawnTime)
-        {
-
-            nextCoinSpawnTime = Random.Range(0.5f, 5.0f);
-            DrawRaysForCoinSpawnPositions();
-        }
     }
 
 
@@ -119,9 +120,6 @@ public class FloorManager : MonoBehaviour {
         floorMover.endPosition = endPosition;
 
         lastSpawned = floorTile;
-
-        DrawRaysForCoinSpawnPositions();
-
     }
 
     private void SpawnEnemy ()
@@ -145,7 +143,7 @@ public class FloorManager : MonoBehaviour {
         }
     }
 
-    private void DrawRaysForCoinSpawnPositions()
+    private void AttemptToSpawnCoins()
     {
 
 
@@ -159,8 +157,6 @@ public class FloorManager : MonoBehaviour {
         {
 
             Vector3 drawRayStart = new Vector3(xPosition, startPosition.y + 2, startPosition.z);
-
-            Debug.Log(drawRayStart);
 
             RaycastHit hit;
 
@@ -190,6 +186,7 @@ public class FloorManager : MonoBehaviour {
     private void SpawnCoin (Vector3 startPos)
     {
         coinSpawnTimerStart = Time.time;
+        nextCoinSpawnTime = Random.Range(1.5f, 5.0f);
 
         GameObject coin = Instantiate(coinPrefab, startPos, Quaternion.identity);
         ScrollingFloor coinMover = coin.GetComponent<ScrollingFloor>();
@@ -197,7 +194,6 @@ public class FloorManager : MonoBehaviour {
 
         coinMover.startPosition = startPos;
         coinMover.endPosition = startPos + new Vector3(0, 0, - 40);
-
 
     }
 }
