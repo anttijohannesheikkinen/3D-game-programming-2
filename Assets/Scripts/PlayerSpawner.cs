@@ -7,12 +7,10 @@ public class PlayerSpawner : MonoBehaviour {
     public bool dead;
 
     private Vector3 startPosition;
-    private CharacterController characterController;
     private Vector3 hidePosition;
 
     private void Awake ()
     {
-        characterController = GetComponent<CharacterController>();
         hidePosition = new Vector3(-1000, -1000, -1000);
     }
 

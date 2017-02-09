@@ -14,8 +14,6 @@ public class FadeEffect : MonoBehaviour {
     private float effectStartTime;
     private float ratio;
     private float effectLength;
-    private bool hasInfromedOfStateChange;
-    private Component informThisWhenDone;
     private Image image;
     private Color color1;
     private Color color2;
@@ -54,8 +52,6 @@ public class FadeEffect : MonoBehaviour {
         {
             fadeState = FadeState.FadingOut;
         }
-
-        hasInfromedOfStateChange = false;
 
         if (fadeIn)
         {

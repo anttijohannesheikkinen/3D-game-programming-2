@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameStateSplashScreenIn : GameStateBase {
 
     private float timerStartTime;
-    private float lengthOfSplashScreen;
+    private float lengthOfSplashScreen = 2.0f;
 
 	protected new void Start ()
     {
