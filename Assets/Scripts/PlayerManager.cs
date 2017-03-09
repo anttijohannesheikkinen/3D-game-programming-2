@@ -29,14 +29,23 @@ public class PlayerManager : MonoBehaviour {
             dead = true;
             extraLives--;
             transform.position = hidePosition;
-            Invoke("SpawnAgain", 1.6f);
 
             if (extraLives < 0)
             {
-                GameStateGameIn gameStateGameIn = FindObjectOfType<GameStateGameIn>();
-                gameStateGameIn.PlayerRanOutOfExtraLives();
+                Invoke("EndGame", 2.0f);
+            }
+
+            else
+            {
+                Invoke("SpawnAgain", 1.6f);
             }
         }
+    }
+
+    private void EndGame()
+    {
+        GameStateGameIn gameStateGameIn = FindObjectOfType<GameStateGameIn>();
+        gameStateGameIn.PlayerRanOutOfExtraLives();
     }
 
     void SpawnAgain ()
