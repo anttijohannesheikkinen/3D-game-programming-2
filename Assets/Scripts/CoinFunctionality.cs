@@ -6,6 +6,17 @@ public class CoinFunctionality : MonoBehaviour {
 
     public ParticleSystem particlesPrefab;
     public GameStateGameIn gameStateGameIn;
+    public Score score;
+
+    private void Awake ()
+    {
+        score = FindObjectOfType<Score>();
+
+        if (score == null)
+        {
+            Debug.LogError("CoinFunctionality couldn't find score counter.");
+        }
+    }
 
     private void Start ()
     {
@@ -24,7 +35,7 @@ public class CoinFunctionality : MonoBehaviour {
     {
 
         ParticleSystem particles = Instantiate(particlesPrefab, transform.position, Quaternion.identity);
-        gameStateGameIn.CoinCollected();
+        score.CoinCollected();
         Destroy(gameObject);
     }
 }

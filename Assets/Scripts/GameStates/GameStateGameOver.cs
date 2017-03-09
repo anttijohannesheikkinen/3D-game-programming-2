@@ -5,12 +5,13 @@ using UnityEngine;
 public class GameStateGameOver : GameStateBase {
 
 	// Use this for initialization
-	void Start () {
-		
-	}
+	protected new void Start () {
+        stateName = "GameOver";
+        base.Start();
+    }
 	
 	// Update is called once per frame
-	void Update () {
+	protected new void Update () {
 		
 	}
 }

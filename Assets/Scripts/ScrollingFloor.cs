@@ -31,9 +31,4 @@ public class ScrollingFloor : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-
-    protected void DestroyThis ()
-    {
-        Destroy(gameObject);
-    }
 }

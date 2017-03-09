@@ -92,6 +92,49 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &747888421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 747888423}
+  - component: {fileID: 747888422}
+  m_Layer: 0
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &747888422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747888421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0aa1a66be72f214fa97bbf0f3b8b31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsCollected: 0
+  currentHighScore: 0
+  playerManager: {fileID: 0}
+--- !u!4 &747888423
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747888421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860654752
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,12 +520,13 @@ MonoBehaviour:
   endPosition: {x: 0, y: 0, z: -15}
   minimumSpeed: 3
   maximumSpeed: 12
-  speed: 3
   speedIncrement: 0.83
   delayBetweenSpeedUp: 6.63
   nextEnemySpawnTime: 1.93
   nextCoinSpawnTime: 2.59
+  floorLength: 5
   floorTiles: 0
+  initial: 0
 --- !u!4 &1917856721
 Transform:
   m_ObjectHideFlags: 0
@@ -533,7 +577,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4375003121445590, guid: b8f0d1fa4cd56774b83a77ed4232df58, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114284521669323942, guid: b8f0d1fa4cd56774b83a77ed4232df58,
         type: 2}

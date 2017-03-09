@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour {
 
     public bool dead;
+    public int extraLives;
 
     private Vector3 startPosition;
     private Vector3 hidePosition;
@@ -26,8 +27,15 @@ public class PlayerManager : MonoBehaviour {
     {
         if (!dead) {
             dead = true;
+            extraLives--;
             transform.position = hidePosition;
             Invoke("SpawnAgain", 1.6f);
+
+            if (extraLives < 0)
+            {
+                GameStateGameIn gameStateGameIn = FindObjectOfType<GameStateGameIn>();
+                gameStateGameIn.PlayerRanOutOfExtraLives();
+            }
         }
     }
 
