@@ -48,7 +48,7 @@ public class EnemyMover : ScrollingFloor {
         if (other.CompareTag("Player"))
         {
             Die();
-            other.GetComponent<PlayerSpawner>().Die();
+            other.GetComponent<PlayerManager>().Die();
         }
     }
 

@@ -66,6 +66,11 @@ public class GameStateManager : MonoBehaviour {
                 gameState.AddComponent<GameStateGameIn>();
                 gameState.name = "Game State: Game";
                 break;
+
+            case StateType.GameOver:
+                gameState.AddComponent<GameStateGameOver>();
+                gameState.name = "Game State: Game Over";
+                break;
         }
 
         newState = StateType.Null;

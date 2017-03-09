@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpawner : MonoBehaviour {
+// TODO: Check for safe respawn position.
+
+public class PlayerManager : MonoBehaviour {
 
     public bool dead;
 

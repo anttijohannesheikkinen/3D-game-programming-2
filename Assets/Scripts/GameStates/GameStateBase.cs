@@ -7,7 +7,8 @@ public class GameStateBase : MonoBehaviour {
         Null = 0,
         SplashScreenIn = 1,
         MainMenuIn = 2,
-        GameIn = 3
+        GameIn = 3,
+        GameOver = 4
     }
 
     public enum FadeOutEffectPhase

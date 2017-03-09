@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// TODO : Refactor this shit.
+
 public class FloorManager : MonoBehaviour {
+
+    public float Speed { get; private set; }
+    public GameObject LastFLoorTile { get; private set; }
+    public GameObject PreviousFloorTile { get; private set; }
 
     public GameObject[] prefabs;
     public GameObject enemyPrefab;
@@ -11,7 +17,6 @@ public class FloorManager : MonoBehaviour {
     public Vector3 endPosition;
     public float minimumSpeed;
     public float maximumSpeed;
-    public float speed;
     public float speedIncrement;
     public float delayBetweenSpeedUp;
 
@@ -20,11 +25,14 @@ public class FloorManager : MonoBehaviour {
 
     public float nextCoinSpawnTime;
     private float coinSpawnTimerStart;
+    public float floorLength = 5.0f;
 
     public int floorTiles;
 
     private bool initialSpawn;
     private float speedUpPhaseStartTime;
+
+    public bool initial;
 
     private GameObject lastSpawned;
 
@@ -33,23 +41,25 @@ public class FloorManager : MonoBehaviour {
 
 
         speedUpPhaseStartTime = Time.time;
-        speed = minimumSpeed;
+        Speed = minimumSpeed;
 
         enemySpawnTimerStart = Time.time;
         nextEnemySpawnTime = Random.Range(1.0f, 3.0f);
 
         coinSpawnTimerStart = Time.time;
         nextCoinSpawnTime = Random.Range(0.5f, 5.0f);
+        float floorLength = Mathf.Abs(startPosition.z) + Mathf.Abs(endPosition.z);
+
+        initial = true;
 
         float zPos = endPosition.z;
-        float floorLength = Mathf.Abs(startPosition.z) + Mathf.Abs(endPosition.z);
 
         while (zPos < startPosition.z) {
             SpawnFloor(new Vector3(0, 0, zPos), 0);
             zPos += 5.0f;
         }
 
-
+        initial = false;
     }
 	
 	// Update is called once per frame
@@ -62,31 +72,9 @@ public class FloorManager : MonoBehaviour {
             SpawnEnemy();
         }
 
-        if (((Time.time - speedUpPhaseStartTime) > delayBetweenSpeedUp) && (speed < maximumSpeed))
+        if (((Time.time - speedUpPhaseStartTime) > delayBetweenSpeedUp) && (Speed < maximumSpeed))
         {
-            speed = Mathf.Clamp(speed += speedIncrement, speed, maximumSpeed);
-
-            GameObject[] floorParts = GameObject.FindGameObjectsWithTag("FloorParts");
-
-            foreach (GameObject go in floorParts)
-            {
-                go.GetComponent<FloorPart>().speed = speed;
-            }
-
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-            foreach (GameObject go in enemies)
-            {
-                go.GetComponent<EnemyMover>().speed = speed;
-            }
-
-            GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
-
-            foreach (GameObject go in coins)
-            {
-                go.GetComponent<ScrollingFloor>().speed = speed;
-            }
-
+            Speed = Mathf.Clamp(Speed += speedIncrement, Speed, maximumSpeed);
             speedUpPhaseStartTime = Time.time;
         }
 
@@ -100,11 +88,14 @@ public class FloorManager : MonoBehaviour {
         }
     }
 
-    public void FloorDestroyed (float offsetZ)
+    public void FloorDestroyed ()
     {
         floorTiles--;
 
-        SpawnFloor(new Vector3(startPosition.x, startPosition.y, startPosition.z + offsetZ), Random.Range(0, prefabs.Length - 1));
+        SpawnFloor(new Vector3(LastFLoorTile.transform.position.x, 
+                               LastFLoorTile.transform.position.y, 
+                               LastFLoorTile.transform.position.z + floorLength),
+                               Random.Range(0, prefabs.Length));
     }
 
 
@@ -112,21 +103,29 @@ public class FloorManager : MonoBehaviour {
     {
 
         floorTiles++;
-
+        PreviousFloorTile = LastFLoorTile;
         GameObject floorTile = Instantiate(prefabs[prefabIndex], startPos, Quaternion.identity);
         FloorPart floorMover = floorTile.GetComponent<FloorPart>();
-        floorMover.speed = speed;
         floorMover.startPosition = startPos;
         floorMover.endPosition = endPosition;
 
-        lastSpawned = floorTile;
+        LastFLoorTile = floorTile;
+
+        if (initial)
+        {
+            floorMover.initial = true;
+        }
+
+        else
+        {
+            floorMover.initial = false;
+        }
     }
 
     private void SpawnEnemy ()
     {
         GameObject enemy = Instantiate(enemyPrefab, startPosition, Quaternion.identity);
         EnemyMover enemyMover = enemy.GetComponent<EnemyMover>();
-        enemyMover.speed = speed;
         enemyMover.startPosition = startPosition + new Vector3(0, 2, 0);
         enemyMover.endPosition = endPosition + new Vector3(0, 2, 0);
 
@@ -178,7 +177,7 @@ public class FloorManager : MonoBehaviour {
 
         if (validPositionCount > 0)
         {
-            SpawnCoin(validPositions[Random.Range(0, validPositionCount - 1)]);
+            SpawnCoin(validPositions[Random.Range(0, validPositionCount)]);
         }
 
     }
@@ -190,7 +189,6 @@ public class FloorManager : MonoBehaviour {
 
         GameObject coin = Instantiate(coinPrefab, startPos, Quaternion.identity);
         ScrollingFloor coinMover = coin.GetComponent<ScrollingFloor>();
-        coinMover.speed = speed;
 
         coinMover.startPosition = startPos;
         coinMover.endPosition = startPos + new Vector3(0, 0, - 40);

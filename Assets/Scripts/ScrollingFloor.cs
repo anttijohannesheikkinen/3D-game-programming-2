@@ -8,8 +8,6 @@ public class ScrollingFloor : MonoBehaviour {
     public Vector3 startPosition;
     public Vector3 endPosition;
 
-    public float speed;
-
     protected Vector3 direction;
 
     // Use this for initialization
@@ -26,7 +24,7 @@ public class ScrollingFloor : MonoBehaviour {
     // Update is called once per frame
     protected void Update ()
     {
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position += direction * floorManager.Speed * Time.deltaTime;
 
         if (transform.position.z <= endPosition.z)
         {
