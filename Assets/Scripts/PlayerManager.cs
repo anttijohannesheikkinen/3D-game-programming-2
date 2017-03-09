@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: Check for safe respawn position.
-
 public class PlayerManager : MonoBehaviour {
 
     public bool dead;

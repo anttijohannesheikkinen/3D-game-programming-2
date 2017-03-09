@@ -49,7 +49,6 @@ public class GameStateMainMenuIn : GameStateBase {
                 fadeOutEffectPhase = FadeOutEffectPhase.FadingIn;
                 Debug.Log("Main Menu waiting to fade in");
                 okToGoToGame = false;
-                Debug.Log("ok to go to game" + okToGoToGame);
                 break;
 
             case FadeOutEffectPhase.FadingIn:
@@ -61,7 +60,6 @@ public class GameStateMainMenuIn : GameStateBase {
                 {
                     StartFadeOut(3.0f);
                     fadeOutEffectPhase = FadeOutEffectPhase.FadingOut;
-                    Debug.Log("ok to go to game" + okToGoToGame);
                     Debug.Log("User started the game");
                 }
                 break;
@@ -79,7 +77,6 @@ public class GameStateMainMenuIn : GameStateBase {
     public void OkToGoToGame ()
     {
         okToGoToGame = true;
-        Debug.Log("ok to go to game" + okToGoToGame);
     }
 
     private void GoToGame()

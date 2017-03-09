@@ -41,7 +41,7 @@ public class Score : MonoBehaviour {
     {
         UpdateScoreGUI();
         UpdateMultiplierGUI();
-        currentHighScore = GameGlobals.Instance.HighScores.CurrenHighestScore;
+        currentHighScore = GameGlobals.Instance.HighScores.CurrentHighestScore;
         UpdateCurrentHighestScore();
     }
 
@@ -78,15 +78,8 @@ public class Score : MonoBehaviour {
 
     private void UpdateCurrentHighestScore()
     {
-        GameGlobals.Instance.HighScores.CurrenHighestScore = (int) score;
+        GameGlobals.Instance.HighScores.CurrentHighestScore = (int) score;
         GUICurrentHighestScoreText.text = "Current High Score: " + (int) currentHighScore;
-    }
-
-    private int GetCurrentHighestScore ()
-    {
-        int currentHighestScore = 1300;
-        //
-        return currentHighestScore ;
     }
 
     public void CoinCollected()

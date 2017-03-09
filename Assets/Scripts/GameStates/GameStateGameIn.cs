@@ -22,6 +22,7 @@ public class GameStateGameIn : GameStateBase {
     private void EndGame ()
     {
         // display game over message
+        GameGlobals.Instance.HighScores.SaveHighScoreData();
         GameGlobals.Instance.GameStateManager.ChangeState(GameStateBase.StateType.GameOver, "GameOver");
     }
 }

@@ -1,27 +1,102 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Linq;
 
+
+// Modded from the save system represented by Sami Kojo at the fall of 2016 at the game programming 2d course.
 public class HighScores : MonoBehaviour {
 
     public string CurrentPlayerName = "Anonymous";
 
     public List<HighScoreData> HighScoreData;
-    public int CurrenHighestScore = 0;
+    public int CurrentHighestScore = 0;
     public int CurrentPlayerScore = 0;
 
-	private void Awake ()
+    private const string SaveFileName = "HighScores.dat";
+    public static string SaveFilePath
     {
-        HighScoreData = new List<HighScoreData>();
-        HighScoreData.Add(new HighScoreData { PlayerName = "Antti", Score = 1300 });
-        HighScoreData.Add(new HighScoreData { PlayerName = "Antti2", Score = 2200 });
-        HighScoreData.Add(new HighScoreData { PlayerName = "Jaajoo", Score = 3300 });
-        HighScoreData.Add(new HighScoreData { PlayerName = "JeeJeeJee", Score = 100 });
-        HighScoreData.Add(new HighScoreData { PlayerName = "Woohoo", Score = 23 });
+        get
+        {
+            return Path.Combine(Application.persistentDataPath, SaveFileName);
+        }
+    }
+
+    private void Awake ()
+    {
+        Debug.Log(Application.persistentDataPath);
+        HighScoreData = LoadHighScoreData();
+        CurrentHighestScore = HighScoreData[0].Score;
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public List<HighScoreData> LoadHighScoreData ()
+    {
+        if (File.Exists(SaveFilePath))
+        {
+            Debug.Log("Save file existed");
+            byte[] data = File.ReadAllBytes(SaveFilePath);
+            BinaryFormatter bf = new BinaryFormatter();
+            MemoryStream ms = new MemoryStream(data);
+            object saveData = bf.Deserialize(ms);
+            return (List<HighScoreData>) saveData;
+        }
+
+        Debug.Log("Save file did not exist");
+
+        List<HighScoreData> InitialJokeHighScore = new List<HighScoreData>();
+        InitialJokeHighScore.Add(new HighScoreData { PlayerName = "Mike Tyson", Score = 2000 });
+        InitialJokeHighScore.Add(new HighScoreData { PlayerName = "Bald Bull", Score = 300 });
+        InitialJokeHighScore.Add(new HighScoreData { PlayerName = "Piston Honda", Score = 100 });
+        InitialJokeHighScore.Add(new HighScoreData { PlayerName = "Von Kaiser", Score = 33 });
+        InitialJokeHighScore.Add(new HighScoreData { PlayerName = "Glass Joe", Score = 12 });
+        InitialJokeHighScore.Add(new HighScoreData { PlayerName = "None", Score = 0 });
+
+        return InitialJokeHighScore;
+    }
+
+    public void SaveHighScoreData ()
+    {
+        AddPlayerToHighScoreList();
+        BinaryFormatter bf = new BinaryFormatter();
+        MemoryStream ms = new MemoryStream();
+        bf.Serialize(ms, HighScoreData);
+        File.WriteAllBytes(SaveFilePath, ms.GetBuffer());
+    }
+
+    //private void CheckIfPlayerMadeItIntoHighScoreList ()
+    //{
+    //    int indexToPutThePlayerAt = 5;
+
+    //    for (int i = 0; i < HighScoreData.Count; i++)
+    //    {
+    //        if (CurrentPlayerScore >= HighScoreData[i].Score)
+    //        {
+    //            indexToPutThePlayerAt = i;
+    //        }
+    //    }
+
+    //    AddPlayerToHighScoreList(indexToPutThePlayerAt);
+
+    //}
+
+    private void AddPlayerToHighScoreList ()
+    {
+        HighScoreData.Remove(HighScoreData[5]);
+        HighScoreData.Add(new HighScoreData { PlayerName = CurrentPlayerName, Score = CurrentPlayerScore });
+
+        SortHighScoreList();
+    }
+
+    private void SortHighScoreList ()
+    {
+        List<HighScoreData> list = new List<HighScoreData>(HighScoreData.Count);
+        list = HighScoreData.OrderByDescending(x => x.Score).ToList();
+        HighScoreData = list;
+    }
+
+    public bool DoesSaveExist()
+    {
+        return File.Exists(SaveFilePath);
+    }
 }
