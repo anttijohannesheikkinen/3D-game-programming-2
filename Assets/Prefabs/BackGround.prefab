@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 224585403410208352}
   - component: {fileID: 222891585441412182}
   - component: {fileID: 114918063830904240}
-  - component: {fileID: 114182360556618616}
+  - component: {fileID: 114111912851582290}
   m_Layer: 0
   m_Name: BackGroundImage
   m_TagString: Untagged
@@ -47,6 +47,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114111912851582290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1354099556014792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c2936181e8aea42ae100e207bdb35d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114168044410200618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,17 +74,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114182360556618616
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1354099556014792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c2936181e8aea42ae100e207bdb35d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114830704028024102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,7 +174,7 @@ RectTransform:
   m_GameObject: {fileID: 1354099556014792}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 1}
+  m_LocalScale: {x: 1000, y: 1000, z: 1}
   m_Children: []
   m_Father: {fileID: 224113720244788624}
   m_RootOrder: 0

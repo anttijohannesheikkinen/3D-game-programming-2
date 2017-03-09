@@ -26,7 +26,7 @@ public class GameStateBase : MonoBehaviour {
     protected StateType stateType;
 
     protected FadeEffect fadeEffect;
-    protected bool performFadeOutEffects;
+    protected bool performFadeOutEffects = true;
     protected FadeOutEffectPhase fadeOutEffectPhase;
 
     protected virtual void Start ()

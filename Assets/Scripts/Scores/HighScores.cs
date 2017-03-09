@@ -25,7 +25,6 @@ public class HighScores : MonoBehaviour {
 
     private void Awake ()
     {
-        Debug.Log(Application.persistentDataPath);
         HighScoreData = LoadHighScoreData();
         CurrentHighestScore = HighScoreData[0].Score;
     }
@@ -63,22 +62,6 @@ public class HighScores : MonoBehaviour {
         bf.Serialize(ms, HighScoreData);
         File.WriteAllBytes(SaveFilePath, ms.GetBuffer());
     }
-
-    //private void CheckIfPlayerMadeItIntoHighScoreList ()
-    //{
-    //    int indexToPutThePlayerAt = 5;
-
-    //    for (int i = 0; i < HighScoreData.Count; i++)
-    //    {
-    //        if (CurrentPlayerScore >= HighScoreData[i].Score)
-    //        {
-    //            indexToPutThePlayerAt = i;
-    //        }
-    //    }
-
-    //    AddPlayerToHighScoreList(indexToPutThePlayerAt);
-
-    //}
 
     private void AddPlayerToHighScoreList ()
     {
