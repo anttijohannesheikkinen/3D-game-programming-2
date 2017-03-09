@@ -26,35 +26,14 @@ public class GameStateMainMenuIn : GameStateBase {
 
 	protected new void Update ()
     {
-        if (!performFadeOutEffects && (Time.time - timerStartTime > 2.0f))
+        if (!performFadeOutEffects)
         {
-            GoStraightThroughTheMenu();
+            GoToGame();
         }
 
         else
         {
             PerformTransitionEffects();
-        }
-    }
-
-    private void GoStraightThroughTheMenu()
-    {
-        switch (menuState)
-        {
-            case MenuState.FadeIn:
-                Debug.Log("Fade in Main Menu");
-                menuState = MenuState.Idle;
-                break;
-
-            case MenuState.Idle:
-                Debug.Log("Wait for input");
-                menuState = MenuState.FadeOut;
-                break;
-
-            case MenuState.FadeOut:
-                Debug.Log("Fade out menu");
-                GoToGame();
-                break;
         }
     }
 
