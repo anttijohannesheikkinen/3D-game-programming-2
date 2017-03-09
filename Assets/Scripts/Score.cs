@@ -41,15 +41,18 @@ public class Score : MonoBehaviour {
     {
         UpdateScoreGUI();
         UpdateMultiplierGUI();
-        currentHighScore = GetCurrentHighestScore();
+        currentHighScore = GameGlobals.Instance.HighScores.CurrenHighestScore;
         UpdateCurrentHighestScore();
     }
 
     private void Update ()
     {
+        if (!playerManager.dead)
+        {
+            score = score + (Time.deltaTime * floorManager.Speed * currentMultiplier);
+            GameGlobals.Instance.HighScores.CurrentPlayerScore = (int)score;
+        }
 
-        score = score + (Time.deltaTime * floorManager.Speed * currentMultiplier);
-        
         if (Time.time > timerStartTime + GUIScoreUpdateTimerLength)
         {
             UpdateScoreGUI();
@@ -75,6 +78,7 @@ public class Score : MonoBehaviour {
 
     private void UpdateCurrentHighestScore()
     {
+        GameGlobals.Instance.HighScores.CurrenHighestScore = (int) score;
         GUICurrentHighestScoreText.text = "Current High Score: " + (int) currentHighScore;
     }
 

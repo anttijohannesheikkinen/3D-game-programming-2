@@ -14,11 +14,12 @@ public class GameStateMainMenuIn : GameStateBase {
     }
 
     private MenuState menuState = MenuState.FadeIn;
+    private bool okToGoToGame;
 
     protected new void Start ()
     {
         stateName = "MainMenuIn";
-
+        okToGoToGame = false;
 
         timerStartTime = Time.time;
         base.Start();
@@ -26,6 +27,7 @@ public class GameStateMainMenuIn : GameStateBase {
 
 	protected new void Update ()
     {
+
         if (!performFadeOutEffects)
         {
             GoToGame();
@@ -46,6 +48,8 @@ public class GameStateMainMenuIn : GameStateBase {
                 timerStartTime = Time.time;
                 fadeOutEffectPhase = FadeOutEffectPhase.FadingIn;
                 Debug.Log("Main Menu waiting to fade in");
+                okToGoToGame = false;
+                Debug.Log("ok to go to game" + okToGoToGame);
                 break;
 
             case FadeOutEffectPhase.FadingIn:
@@ -53,11 +57,12 @@ public class GameStateMainMenuIn : GameStateBase {
 
             case FadeOutEffectPhase.Idle:
 
-                if (Input.anyKey)
+                if (okToGoToGame)
                 {
                     StartFadeOut(3.0f);
                     fadeOutEffectPhase = FadeOutEffectPhase.FadingOut;
-                    Debug.Log("User pressed 'any key'");
+                    Debug.Log("ok to go to game" + okToGoToGame);
+                    Debug.Log("User started the game");
                 }
                 break;
 
@@ -69,6 +74,12 @@ public class GameStateMainMenuIn : GameStateBase {
                 GoToGame();
                 break;
         }
+    }
+
+    public void OkToGoToGame ()
+    {
+        okToGoToGame = true;
+        Debug.Log("ok to go to game" + okToGoToGame);
     }
 
     private void GoToGame()

@@ -10,8 +10,9 @@ public class GameStateGameOver : GameStateBase {
         base.Start();
     }
 	
-	// Update is called once per frame
-	protected new void Update () {
-		
-	}
+	protected void GoToMainMenu ()
+    {
+        Debug.Log("Game Over script told to transition to Main Menu");
+        gameStateManager.ChangeState(StateType.MainMenuIn, "MainMenu");
+    }
 }

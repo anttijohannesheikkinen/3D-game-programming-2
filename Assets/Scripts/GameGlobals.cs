@@ -20,6 +20,7 @@ public class GameGlobals : MonoBehaviour {
         }
     }
     public GameStateManager GameStateManager;
+    public HighScores HighScores;
 
 	void Awake () {
 		
@@ -53,7 +54,7 @@ public class GameGlobals : MonoBehaviour {
     private void FindManagers ()
     {
         GameStateManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
-
+        HighScores = GameObject.Find("HighScore").GetComponent<HighScores>();
     }
 
     private void NullChecks ()
@@ -67,5 +68,11 @@ public class GameGlobals : MonoBehaviour {
     private void SetGameDefaults ()
     {
 
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("Quit Game");
+        Application.Quit();
     }
 }
